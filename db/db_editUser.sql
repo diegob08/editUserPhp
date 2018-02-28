@@ -1027,7 +1027,9 @@ CREATE TABLE tbl_user (
   user_pass varchar(250) NOT NULL,
   user_email varchar(250) NOT NULL,
   user_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  user_ip varchar(50) NOT NULL DEFAULT 'no'
+  user_level int(10) unsigned DEFAULT NULL,
+  user_ip varchar(50) NOT NULL DEFAULT 'no',
+  user_login_count int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
