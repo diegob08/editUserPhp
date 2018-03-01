@@ -19,6 +19,22 @@ $password = mysqli_real_escape_string($link, $password);
                 return $message;
             }
 
+            if ($founduser['user_pass'] === $password) {
+                $_SESSION['user_id'] = $id;
+                $_SESSION['user_name'] = $founduser['user_fname'];
+
+                $updatestring = "UPDATE tbl_user SET user_ip = '$ip', user_login_count = user_login_count+1 WHERE user_id={$id}";
+                $updatequery = mysqli_query($link, $updatestring);
+
+                if($user_login_count>0){
+                    redirect_to("admin_index.php");
+                }else{
+                    redirect_to("admin_edituser.php");
+                }
+            }else{
+                $message = "Username and or password is incorrect.<br>Please make sure your cap lock key is turned off.";
+                return $message;
+            }
         }
 		mysqli_close($link);
 	}
