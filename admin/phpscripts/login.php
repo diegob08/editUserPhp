@@ -8,10 +8,10 @@ $password = mysqli_real_escape_string($link, $password);
         $userQuery = "SELECT * FROM tbl_user WHERE user_name='{$username}'";
         $user = mysqli_query($link, $userQuery);
         if (mysqli_num_rows($user)) {
-            $founduser = mysqli_fetch_array($user, MYSQLI_ASSOC);
-            $id = $founduser['user_id'];
-            $user_login_count = $founduser['user_login_count'];
-            $user_last_login_date = $founduser['user_date'];
+            $selectUser = mysqli_fetch_array($user, MYSQLI_ASSOC);
+            $id = $selectUser['user_id'];
+            $user_login_count = $selectUser['user_login_count'];
+            $user_last_login_date = $selectUser['user_date'];
 
             if($user_login_count<1 && time() - strtotime($user_last_login_date) >$time_limit){
                 //Suspend the account if new user first time login 1 day after account being created;
@@ -19,9 +19,9 @@ $password = mysqli_real_escape_string($link, $password);
                 return $message;
             }
 
-            if ($founduser['user_pass'] === $password) {
+            if ($selectUser['user_pass'] === $password) {
                 $_SESSION['user_id'] = $id;
-                $_SESSION['user_name'] = $founduser['user_fname'];
+                $_SESSION['user_name'] = $selectUser['user_fname'];
 
                 $updatestring = "UPDATE tbl_user SET user_ip = '$ip', user_login_count = user_login_count+1 WHERE user_id={$id}";
                 $updatequery = mysqli_query($link, $updatestring);
