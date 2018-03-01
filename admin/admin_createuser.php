@@ -22,10 +22,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/main.css">
 <title>CMS Portal</title>
 </head>
 <body>
-	<h1>Welcome Company Name to your create user page</h1>
+	<div class="loginCont2">
+	<h1 class="title">Welcome to your create user page</h1>
 	<?php if(!empty($message)){echo $message;} ?>
 	<form action="admin_createuser.php" method="post">
 	<label>First Name:</label>
@@ -53,5 +55,6 @@
 
 	<input type="submit" name="submit" value="Create User">
 	</form>
+</div>
 </body>
 </html>

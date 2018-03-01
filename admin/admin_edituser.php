@@ -30,10 +30,12 @@ $found_user = mysqli_fetch_array($popForm, MYSQLI_ASSOC);
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/main.css">
 <title>CMS Portal</title>
 </head>
 <body>
-	<h1>Welcome Company Name to your edit account</h1>
+	<div class="loginCont3">
+	<h1 class="title">Welcome to your edit user account</h1>
 	<?php if(!empty($message)){echo $message;} ?>
 	<form action="admin_edituser.php" method="post">
 	<label>First Name:</label>
@@ -54,5 +56,6 @@ $found_user = mysqli_fetch_array($popForm, MYSQLI_ASSOC);
 
 	<input type="submit" name="submit" value="Edit User">
 	</form>
+</div>
 </body>
 </html>
